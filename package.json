@@ -13,15 +13,24 @@
     "reset": "node --import tsx main.ts reset",
     "test": "npm run test:ts && npm run test:python",
     "typecheck": "tsc --noEmit",
-    "test:ts": "node --import tsx --test tests/*.test.ts",
+    "test:ts": "node --import tsx --test tests/analyst.test.ts tests/selection.test.ts tests/workflow.test.ts",
     "test:python": "node --import tsx scripts/python.ts test",
-    "setup": "node --import tsx scripts/python.ts setup"
+    "setup": "node --import tsx scripts/python.ts setup",
+    "dev": "node init && next dev -p 3000",
+    "build": "node init && next build",
+    "start": "node init && next start -p 3000",
+    "reset:reviews": "node --import tsx main.ts reset-reviews"
   },
   "dependencies": {
-    "@electric-sql/pglite": "0.5.9"
+    "@electric-sql/pglite": "0.5.9",
+    "next": "15.5.4",
+    "react": "19.1.1",
+    "react-dom": "19.1.1"
   },
   "devDependencies": {
     "@types/node": "22.19.15",
+    "@types/react": "19.1.13",
+    "@types/react-dom": "19.1.9",
     "tsx": "4.23.15",
     "typescript": "5.9.3"
   }

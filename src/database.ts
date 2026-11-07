@@ -1,9 +1,16 @@
 import { PGlite } from '@electric-sql/pglite';
 import { readFile, mkdir, stat } from 'node:fs/promises';
+import { existsSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 
-export const ROOT = fileURLToPath(new URL('../', import.meta.url));
+// Resolved without `new URL(..., import.meta.url)` so bundlers (Next.js) do not treat it as an asset.
+function projectRoot(): string {
+  const candidates = [process.env.ASSESSMENT_ROOT, path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..'), process.cwd()];
+  for (const dir of candidates) if (dir && existsSync(path.join(dir, 'data', 'manifest.json'))) return dir + path.sep;
+  throw new Error('Cannot locate the project directory. Run commands from the engineering-assessment folder or set ASSESSMENT_ROOT.');
+}
+export const ROOT = projectRoot();
 export const AS_OF = '2026-10-06T12:00:00Z';
 export const PERIOD_START = '2026-09-28';
 export const PERIOD_END = '2026-10-04';

@@ -3,6 +3,10 @@
 A two-hour engineering assessment for the Senior Software Engineer, AI & Data Platform role.
 All companies, documents and records in this project are synthetic.
 
+## Review application
+
+The submitted solution is a Next.js review workspace: `npm ci`, `npm run setup`, `npm run build`, `npm start`, then open http://localhost:3000. See [SOLUTION.md](SOLUTION.md) for usage, findings, architecture and tests.
+
 ## The business problem
 
 Our team uses an internal application to prepare weekly marketplace performance reports

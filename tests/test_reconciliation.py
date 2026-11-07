@@ -28,3 +28,12 @@ def test_zero_baseline_has_no_percentage_growth():
     evidence = example()
     evidence['previousSubscriptions'] = 0
     assert reconcile(evidence)['evidence']['growthPct'] is None
+
+
+def test_partial_current_snapshot_is_not_comparable_growth():
+    evidence = example()
+    evidence['sourceComplete'] = False
+    evidence['sourcePeriodEnd'] = '2026-10-02'
+    result = reconcile(evidence)
+    assert result['evidence']['growthPct'] is None
+    assert result['quality']['status'] == 'insufficient'

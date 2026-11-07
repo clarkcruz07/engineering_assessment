@@ -7,8 +7,13 @@ async function main(): Promise<void> {
   const args = process.argv.slice(2);
   const [command] = args;
   if (command === 'reset') {
-    await rm(path.join(ROOT, '.runtime'), { recursive: true, force: true });
-    console.log('Local working database reset. The bundled snapshot is unchanged.');
+    await rm(path.join(ROOT, '.runtime', 'marketplace'), { recursive: true, force: true });
+    console.log('Local working evidence database reset. The bundled snapshot and saved review cases are unchanged.');
+    return;
+  }
+  if (command === 'reset-reviews') {
+    await rm(path.join(ROOT, '.runtime', 'review-store'), { recursive: true, force: true });
+    console.log('DESTRUCTIVE: all saved review cases and decisions were deleted.');
     return;
   }
   if (!['report', 'query'].includes(command ?? '')) throw new Error('Usage: npm run report -- --brand cedar-coast [--marketplace US] [--trace] [--json] | npm run query -- "SELECT ..."');
