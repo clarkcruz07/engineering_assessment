@@ -16,9 +16,9 @@
     "test:ts": "node --import tsx --test tests/analyst.test.ts tests/selection.test.ts tests/workflow.test.ts",
     "test:python": "node --import tsx scripts/python.ts test",
     "setup": "node --import tsx scripts/python.ts setup",
-    "dev": "node init && next dev -p 3000",
-    "build": "node init && next build",
-    "start": "node init && next start -p 3000",
+    "dev": "next dev -p 3000",
+    "build": "next build",
+    "start": "next start -p 3000",
     "reset:reviews": "node --import tsx main.ts reset-reviews"
   },
   "dependencies": {
